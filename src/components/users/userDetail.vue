@@ -20,6 +20,26 @@
               </v-list-item>
             </v-col>
           </v-row>
+          <v-list>
+            <v-subheader>
+              Repositories:
+            </v-subheader>
+            <v-list-item-group color="primary">
+              <v-list-item v-for="(repository, i) in repositories" :key="i">
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-html="repository.name"
+                  ></v-list-item-title>
+                  <v-list-item-subtitle v-if="repository.private"
+                    >(Private)
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle
+                    >Language: {{ repository.language || '-' }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-card-text>
       </v-card>
     </div>
