@@ -1,9 +1,16 @@
 <template>
   <v-card class="mx-auto" tile style="height: 100vh; overflow: scroll;">
     <v-list avatar>
+      <v-subheader>
+        <v-text-field
+          label="Search users"
+          v-model="searchTerm"
+          prepend-inner-icon="mdi-magnify"
+        ></v-text-field>
+      </v-subheader>
       <v-list-item-group color="primary">
         <v-list-item
-          v-for="(user, i) in users"
+          v-for="(user, i) in filteredUsers"
           :key="i"
           @click="onUserSelect(user.id)"
         >
@@ -28,9 +35,15 @@ export default Vue.extend({
   name: 'UserList',
 
   data: () => ({
+    searchTerm: '',
   }),
 
   computed: {
+    filteredUsers: function() {
+      return this.searchTerm
+        ? this.users.filter((user: any) => user.login.includes(this.searchTerm))
+        : this.users;
+    },
     ...mapState(['users']),
   },
   },
