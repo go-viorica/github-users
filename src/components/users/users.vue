@@ -25,5 +25,9 @@ export default Vue.extend({
   },
 
   data: () => ({}),
+
+  mounted() {
+    this.$store.dispatch('fetchAllUsers');
+  },
 });
 </script>
