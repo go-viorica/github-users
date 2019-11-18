@@ -46,6 +46,14 @@ export default Vue.extend({
     },
     ...mapState(['users']),
   },
+
+  methods: {
+    onUserSelect: function(userId: string) {
+      this.$router.push({
+        name: 'UserDetail',
+        params: { userId },
+      });
+    },
   },
 });
 </script>
